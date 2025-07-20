@@ -1,0 +1,31 @@
+web socket example
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const proto = window.location.protocol === "https:" ? "wss" : "ws";
+      const ws = new WebSocket(`${proto}://${window.location.host}`);
+
+      ws.onopen = () => {
+        console.log("✅ WebSocket connection opened");
+      };
+
+      ws.onmessage = (e) => {
+        console.log("📩 Message received:", e.data);
+      };
+
+      ws.onclose = () => {
+        console.log("❌ WebSocket connection closed");
+      };
+
+      ws.onerror = (err) => {
+        console.error("⚠️ WebSocket error:", err);
+      };
+    </script>
+  </body>
+</html>
